@@ -1,25 +1,38 @@
 <?php
 
 /**
- * Description of Router
+ * Компонент для обрабоки маршрутов
  *
  * @author user
  */
 class Router {
 
+    /**
+     * Массив роутов
+     * @var array 
+     */
     private $routes;
 
     public function __construct() {
+        // Путь к файлу роутов
         $routesPath = ROOT . '/config/routes.php';
+        // Получение роутов из файла
         $this->routes = include($routesPath);
     }
 
+    /**
+     * Метод получения URI
+     * @return string
+     */
     private function getUri() {
         if (!empty($_SERVER['REQUEST_URI'])) {
             return trim($_SERVER['REQUEST_URI'], '/');
         }
     }
 
+    /**
+     * Метод обработки запросов
+     */
     public function start() {
         $uri = $this->getUri();
 
