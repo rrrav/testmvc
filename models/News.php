@@ -7,14 +7,21 @@
  */
 class News {
 
+    /**
+     * Returns single news intem with specified id
+     * @param integer $id
+     */
     public static function getItemNewsById($id) {
-        // обращение к БД
-        echo 'Показать новость по id: ' . $id;
+        // Query to a DB
+        echo 'Show news by id: ' . $id;
     }
 
+    /**
+     * Returns an array of news items
+     */
     public static function getNews() {
-        // обращение к БД
-        echo 'Показать все новости';
+        // Query to a DB
+        echo 'Show several news';
     }
 
 }
