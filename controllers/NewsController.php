@@ -16,6 +16,10 @@ class NewsController {
         $newList = array();
         $newList = News::getNews();  
         
+        echo '<pre>';
+        print_r($newList);
+        echo '</pre>';
+        
         return true;
     }
 
