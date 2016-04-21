@@ -1,12 +1,16 @@
 <?php
 
 /**
- * Description of Router
+ * Front controller
  *
  * @author user
  */
 class Router {
 
+    /**
+     * An array of routes 
+     * @var array $routes
+     */
     private $routes;
 
     public function __construct() {
@@ -14,6 +18,10 @@ class Router {
         $this->routes = include($routesPath);
     }
 
+    /**
+     * 
+     * @return string
+     */
     private function getUri() {
         if (!empty($_SERVER['REQUEST_URI'])) {
             return trim($_SERVER['REQUEST_URI'], '/');
