@@ -5,30 +5,37 @@
  *
  * @author user
  */
-class Router {
+class Router
+{
 
     /**
-     * An array of routes 
+     * An array of routes
      * @var array $routes
      */
     private $routes;
 
-    public function __construct() {
+    public function __construct()
+    {
         $routesPath = ROOT . '/config/routes.php';
         $this->routes = include($routesPath);
     }
 
     /**
-     * 
+     *
      * @return string
      */
-    private function getUri() {
+    private function getUri()
+    {
         if (!empty($_SERVER['REQUEST_URI'])) {
             return trim($_SERVER['REQUEST_URI'], '/');
         }
     }
-
-    public function start() {
+    
+    public function start()
+    {
+        /**
+         * Get URI
+         */
         $uri = $this->getUri();
 
         foreach ($this->routes as $patternUri => $path) {
@@ -52,10 +59,9 @@ class Router {
                         array($controllerObj, $actionName), $params
                 );
                 if ($result != null) {
-                    break;
+                    exit();
                 }
             }
         }
     }
-
 }
