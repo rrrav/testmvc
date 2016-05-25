@@ -9,7 +9,7 @@ class News
 {
 
     /**
-     * Returns single news intem with specified id
+     * Returns single news item by specified id
      * @param integer $id
      */
     public static function getItemNewsById($id)
@@ -17,9 +17,10 @@ class News
         // Query to a DB
         $pdo = Db::getConnect();
 
-        $result = $pdo->query('SELECT * FROM news WHERE id=' . $id);
+        $result = $pdo->prepare('SELECT * FROM news WHERE id = :id');
+        $result->execute(array('id' => $id));
         $newsItem = $result->fetch();
-        
+
         return $newsItem;
     }
 
@@ -42,6 +43,7 @@ class News
             $newList[$i]['title'] = $row['title'];
             $newList[$i]['date'] = $row['date'];
             $newList[$i]['short_content'] = $row['short_content'];
+
             $i++;
         }
 
